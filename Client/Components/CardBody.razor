@@ -1,0 +1,42 @@
+﻿<div class="card-size my-4 mx-auto shadow-sm">
+    <div class="card-body">
+        <div class="flex-between-container mt-2 mb-3">
+            <h2 class="fst-italic">@CardTitle</h2>
+            <h5 class="@ShowIndicator">@StepsIndication()</h5>
+        </div>
+
+        <div class="form-border"></div>
+        @ChildContent
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string? CardTitle { get; set; }
+
+    [Parameter]
+    public int? CurrentStep { get; set; }
+
+    [Parameter]
+    public int? MaximumStep { get; set; }
+
+    [Parameter]
+    public bool Steps { get; set; } = false;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private string ShowIndicator => Steps ? "d-block" : "d-none";
+
+    private string StepsIndication()
+    {
+        string indicator = "";
+
+        if (CurrentStep <= MaximumStep)
+        {
+            indicator = $"{CurrentStep} of {MaximumStep}";
+        }
+        return indicator;
+    }
+}

@@ -1,0 +1,120 @@
+﻿@page "/login"
+@inject ILoginViewModel _login
+@using Blazored.FluentValidation
+@inject NavigationManager _navigator
+
+<CardBody CardTitle="Login" Steps CurrentStep="_login.CurrentStep" MaximumStep="_login.MaximumStep - 1">
+    @if (_login.IsLoading)
+    {
+            <LoadingScreen />
+    }
+    else
+    {
+        @switch (_login.CurrentStep)
+        {
+            case 1:
+                #region PersonalLogin
+                            <EditForm Model="_login.LoginModel.LoginPersonal" OnValidSubmit="_login.LoginStepOne">
+                                <FluentValidationValidator />
+
+                                <CustomInput DisplayText="Username or Email" @bind-Value="_login.LoginModel.LoginPersonal.Name"
+            Validation="(() => _login.LoginModel.LoginPersonal.Name)" />
+
+                                <CustomInput Type="password" DisplayText="Password" @bind-Value="_login.LoginModel.LoginPersonal.Password"
+            Validation="(() => _login.LoginModel.LoginPersonal.Password)" />
+
+
+                                <CustomAlertMessage Message="@_login.ErrorMessage" Status="CustomAlertMessage.StatusOption.Danger" />
+
+                                <CustomButton Name="Next" Type="submit" CssClass="custom-btn-primary float-end" />
+                            </EditForm>
+                #endregion
+                break;
+            case 2:
+                #region QRCodeLogin
+                            <EditForm Model="_login.LoginModel.QRCode" OnValidSubmit="_login.LoginStepTwo">
+                                <FluentValidationValidator />
+
+                                <input type="hidden" @bind="_login.LoginModel.QRCode.UserId" />
+
+                                <CustomInput DisplayText="OTP Code" @bind-Value="_login.LoginModel.QRCode.OTPCode"
+            Validation="(() => _login.LoginModel.QRCode.OTPCode)" />
+
+                                <CustomAlertMessage Message="@_login.ErrorMessage" Status="CustomAlertMessage.StatusOption.Danger" />
+
+                                <div class="flex-between-container">
+                                    <CustomButton Name="Send Again" Type="button" OnClickFunc="_login.SendQRCode"
+                CssClass="custom-btn-primary" />
+                                    <CustomButton Name="Next" Type="submit" CssClass="custom-btn-primary" />
+                                </div>
+                            </EditForm>
+                #endregion
+                break;
+            case 3:
+                #region ImageLogin
+                            <EditForm Model="_login.LoginModel.SelectedImages" OnValidSubmit="_login.LoginStepThree">
+                                <FluentValidationValidator />
+
+                                <div class="image-grid-box mb-4">
+                        @foreach (var image in _login.Images)
+                        {
+                                            <label class="image-checkbox">
+                                                <input type="checkbox" @onchange="eventArgs => { CheckboxClicked(image.Name!, eventArgs.Value); }" />
+                                                <div class="image-border">
+                                                    <img src="data:image/jpg;base64, @image.ImageData" alt="@image.Name" draggable="false" />
+                                                </div>
+                                            </label>
+                        }
+                                </div>
+
+                                <CustomAlertMessage Message="@_login.ErrorMessage" Status="CustomAlertMessage.StatusOption.Danger" />
+                                <CustomButton Name="Sign In" Type="submit" CssClass="custom-btn-primary float-end" />
+                            </EditForm>
+                #endregion
+                break;
+            case 4:
+                            <Results Link="/" LinkText="Back" Title="Login Error" Message="@_login.ErrorMessage" />
+                break;
+            default:
+                            <Results Link="/" LinkText="Back" Title="Login Error" Message="@MessageOption.PageError" />
+                break;
+        }
+    }
+</CardBody>
+
+
+
+
+@code {
+
+    [CascadingParameter]
+    protected Task<AuthenticationState>? AuthState { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var user = (await AuthState!).User;
+
+        if (user.Identity!.IsAuthenticated)
+        {
+            _navigator.NavigateTo("/");
+        }
+    }
+
+    private void CheckboxClicked(string selectedImage, object isChecked)
+    {
+        if ((bool)isChecked)
+        {
+            if (!_login.SelectedImages.Contains(selectedImage))
+            {
+                _login.SelectedImages.Add(selectedImage);
+            }
+        }
+        else
+        {
+            if (_login.SelectedImages.Contains(selectedImage))
+            {
+                _login.SelectedImages.Remove(selectedImage);
+            }
+        }
+    }
+}

@@ -1,0 +1,112 @@
+@page "/register"
+@using Blazored.FluentValidation
+@inject IRegisterViewModel _register
+@inject NavigationManager _navigator
+
+
+<CardBody CardTitle="Registration" Steps CurrentStep="_register.CurrentStep" MaximumStep="_register.MaximumStep - 1">
+    @if (_register.IsLoading)
+    {
+        <LoadingScreen />
+    }
+    else
+    {
+        @switch (_register.CurrentStep)
+        {
+            case 1:
+                #region PersonalForm
+                <EditForm Model="_register.RegisterModel.User">
+                    <FluentValidationValidator />
+
+                    <CustomInput DisplayText="Username" @bind-Value="_register.RegisterModel.User.Username"
+            Validation="(() => _register.RegisterModel.User.Username)" />
+
+                    <CustomInput Type="email" DisplayText="Email" @bind-Value="_register.RegisterModel.User.Email"
+            Validation="(() => _register.RegisterModel.User.Email)" />
+
+                    <div class="form-floating mb-3">
+                        <InputSelect class="form-select" id="floatingSelect" @bind-Value="_register.RegisterModel.User.Gender">
+                            <option value="">Please select your gender</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </InputSelect>
+                        <label for="floatingInput">Gender</label>
+                        <ValidationMessage For="(() => _register.RegisterModel.User.Gender)" />
+                    </div>
+
+                    <CustomInput Type="password" DisplayText="Password" @bind-Value="_register.RegisterModel.User.Password"
+            Validation="(() => _register.RegisterModel.User.Password)" />
+
+                    <CustomInput Type="password" DisplayText="Confirm Password"
+            @bind-Value="_register.RegisterModel.User.ConfirmPassword"
+            Validation="(() => _register.RegisterModel.User.ConfirmPassword)" />
+
+                    <CustomAlertMessage Message="@_register.ErrorMessage" Status="CustomAlertMessage.StatusOption.Danger" />
+
+                    <CustomButton Name="Next" Type="submit" CssClass="custom-btn-primary float-end"
+            OnClickFunc="_register.RegisterStepOne" />
+                </EditForm>
+                #endregion
+                break;
+            case 2:
+                #region ImageForm
+                <EditForm Model="_register.RegisterModel.Image" OnValidSubmit="_register.RegisterStepTwo">
+                    <FluentValidationValidator />
+
+                    @foreach (var image in _register.Images)
+                    {
+                        _register.RegisterModel.Image.Add(new() { Name = image.Name });
+                    }
+                    <ImageSlider Images="_register.Images" />
+
+                    <CustomAlertMessage Message="@_register.ErrorMessage" Status="CustomAlertMessage.StatusOption.Danger" />
+
+                    <div class="flex-between-container">
+                        <CustomButton Name="Back" Type="button" CssClass="custom-btn-primary"
+                OnClickFunc="_register.PreviousRegisterStep" />
+
+                        <CustomButton Name="Refresh" Type="button" CssClass="custom-btn-primary"
+                OnClickFunc="_register.GetRegistrationImage" />
+
+                        <CustomButton Name="Sign Up" Type="submit" CssClass="custom-btn-primary" />
+                    </div>
+
+
+                </EditForm>
+                #endregion
+                break;
+            case 3:
+                #region FinalPage
+                if (!string.IsNullOrEmpty(_register.ErrorMessage))
+                {
+                    <Results Link="/" LinkText="Back" Title="Registration Error" Message="@_register.ErrorMessage" />
+                }
+                else
+                {
+                    <Results Link="login" LinkText="Sign In" Title="Registration Completed" Message="@MessageOption.EmailVerify" />
+                    <Notifications Title="Account Verfication" Message="@_register.InfoMessage"
+        Status="Notifications.StatusOption.Info" />
+                }
+                #endregion
+                break;
+            default:
+                <Results Link="/" LinkText="Back" Title="Registration Error" Message="@MessageOption.PageError" />
+                break;
+        }
+    }
+</CardBody>
+
+@code {
+    [CascadingParameter]
+    protected Task<AuthenticationState>? AuthState { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var user = (await AuthState!).User;
+
+        if (user.Identity!.IsAuthenticated)
+        {
+            _navigator.NavigateTo("/");
+        }
+    }
+}

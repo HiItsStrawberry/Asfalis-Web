@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "2HILJ/6hxXHnbnGCeMgZgqzqIjv8QAIelYFTuAprfaHHwDlUN92Sj4QAxxjDlAbEsPZowtNSkps91d3IIGTS6w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\YAU\\Desktop\\Asfalis Project\\asfalis\\Shared\\asfalis.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\YAU\\.nuget\\packages\\fluentvalidation\\11.1.0\\fluentvalidation.11.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

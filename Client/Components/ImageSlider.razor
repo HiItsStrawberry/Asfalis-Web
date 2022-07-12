@@ -1,0 +1,42 @@
+﻿<div class="slider-container">
+    <div class="image-container">
+
+        <div class="slider-button">
+            <a @onclick:preventDefault="true" @onclick="PreviousImage"><i class="fa-solid fa-angle-left"></i></a>
+            <a @onclick:preventDefault="true" @onclick="NextImage"><i class="fa-solid fa-angle-right"></i></a>
+        </div>
+
+        <img src="data:image/jpg;base64, @Images?[CurrentSlide - 1].ImageData" alt="@Images?[CurrentSlide - 1].Name" />
+
+        <div class="slider-text">
+            <p>@CurrentSlide / @MaxSlide</p>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public List<ImageListDTO>? Images { get; set; }
+
+    private int MaxSlide { get; set; } = 0;
+
+    private int CurrentSlide { get; set; } = 1;
+
+    protected override void OnParametersSet() => this.MaxSlide = Images!.Count;
+
+    private void NextImage()
+    {
+        CurrentSlide += 1;
+
+        if (CurrentSlide > MaxSlide)
+            CurrentSlide = 1;
+    }
+
+    private void PreviousImage()
+    {
+        CurrentSlide -= 1;
+
+        if (CurrentSlide <= 0)
+            CurrentSlide = MaxSlide;
+    }
+}

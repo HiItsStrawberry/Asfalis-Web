@@ -1,0 +1,60 @@
+﻿@if (string.IsNullOrEmpty(Message)) return;
+
+@switch (Status)
+{
+    case StatusOption.Info:
+        CurrentStatus = "primary";
+        CurrentIcon = "fa-circle-info";
+        break;
+    case StatusOption.Success:
+        CurrentStatus = "success";
+        CurrentIcon = "fa-circle-check";
+        break;
+    case StatusOption.Warning:
+        CurrentStatus = "warning";
+        CurrentIcon = "fa-circle-exclamation";
+        break;
+    case StatusOption.Danger:
+        CurrentStatus = "danger";
+        CurrentIcon = "fa-circle-exclamation";
+        break;
+}
+
+@if (Show)
+{
+    <div class="alert alert-@CurrentStatus d-flex align-items-center" role="alert">
+        <div class="d-flex align-items-center" style="width: 100%">
+            <i class="fa-solid @CurrentIcon fs-4"></i>
+            <p class="mx-3 mb-0 flex-grow-1">@Message</p>
+            <CustomButton Type="button" cssClass="btn-close flex-shrink-1" OnClickFunc="CloseAlert" />
+        </div>
+    </div>
+}
+
+@code {
+    private bool Show = true;
+
+    private string? CurrentIcon;
+
+    private string? CurrentStatus;
+
+    [Parameter]
+    public StatusOption Status { get; set; }
+
+    [Parameter]
+    public string Message { get; set; } = string.Empty;
+
+    private void CloseAlert()
+    {
+        Show = false;
+    }
+
+    public enum StatusOption
+    {
+        Info,
+        Success,
+        Warning,
+        Danger
+    }
+}
+

@@ -1,0 +1,56 @@
+﻿@inject NavigationManager _navManager
+@inject ILocalStorageService _localStorage
+@inject CustomAuthStateProvider _authState
+
+<div class="top-row ps-4 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Asfalis ασφαλής</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" style="display: block" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <AuthorizeView>
+            <Authorized>
+                <NavLink class="nav-links" href="" Match="NavLinkMatch.All">
+                    <i class="fa-solid fa-house"></i> Home
+                </NavLink>
+                <NavLink class="nav-links" href="#" @onclick="Logout">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </NavLink>
+            </Authorized>
+            <NotAuthorized>
+                <NavLink class="nav-links" href="" Match="NavLinkMatch.All">
+                    <i class="fa-solid fa-house"></i> Home
+                </NavLink>
+                <NavLink class="nav-links" href="register">
+                    <i class="fa-solid fa-user-plus"></i> Register
+                </NavLink>
+
+                <NavLink class="nav-links" href="login">
+                    <i class="fa-solid fa-right-to-bracket"></i> Login
+                </NavLink>
+            </NotAuthorized>
+        </AuthorizeView>
+    </nav>
+</div>
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private async Task Logout()
+    {
+        await _localStorage.RemoveItemAsync("auth_token");
+        await _authState.NotifyStateChanged();
+        _navManager.NavigateTo("login");
+    }
+}

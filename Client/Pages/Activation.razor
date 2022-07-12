@@ -1,0 +1,56 @@
+﻿@page "/activation"
+@inject HttpClient _httpClient
+@inject NavigationManager _navManager
+
+<CardBody CardTitle="Email Verification">
+    @if (IsLoading)
+    {
+        <LoadingScreen />
+    }
+    else
+    {
+        <Results Link="@Link" LinkText="@LinkText" Title="Account Activation" Message="@Message" />
+    }
+</CardBody>
+
+
+
+
+
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "token")]
+    public string? Token { get; set; }
+
+    [Parameter]
+    public string? Message { get; set; }
+
+    [Parameter]
+    public bool IsLoading { get; set; } = false;
+
+    private string Link = "/";
+
+    private string LinkText = "Back";
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        this.IsLoading = true;
+
+        if (string.IsNullOrEmpty(Token))
+        {
+            this.Message = MessageOption.AcccountActivication;
+            this.IsLoading = false;
+            return;
+        }
+
+        var result = await _httpClient.PostAsJsonAsync("api/register/activation", Token);
+
+        this.Link = "login";
+        this.LinkText = "Sign In";
+        this.Message = result.Content.ReadAsStringAsync().Result;
+
+        this.IsLoading = false;
+    }
+}

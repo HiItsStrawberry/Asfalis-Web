@@ -1,0 +1,10 @@
+global using asfalis.Server.DataContext;
+global using asfalis.Server.Services;
+global using asfalis.Shared.DTOs;
+global using asfalis.Shared.Models;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using System.Text;
+global using asfalis.Server.Services.UserService;
+global using asfalis.Server.Services.QRCodeService;
+global using asfalis.Server.Services.JwtTokenService;

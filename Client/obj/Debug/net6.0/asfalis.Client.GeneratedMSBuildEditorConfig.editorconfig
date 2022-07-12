@@ -1,0 +1,87 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = browser
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = true
+build_property.IncludeAllContentForSelfExtract = 
+build_property.RootNamespace = asfalis.Client
+build_property.RootNamespace = asfalis.Client
+build_property.ProjectDir = c:\Users\YAU\Desktop\Asfalis Project\asfalis\Client\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = c:\Users\YAU\Desktop\Asfalis Project\asfalis\Client
+build_property._RazorSourceGeneratorDebug = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Components/CustomAlertMessage.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDdXN0b21BbGVydE1lc3NhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Components/CustomButton.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDdXN0b21CdXR0b24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Components/CustomInput.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDdXN0b21JbnB1dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Components/Notifications.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xOb3RpZmljYXRpb25zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Components/Results.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSZXN1bHRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Pages/Activation.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWN0aXZhdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Pages/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Components/CardBody.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDYXJkQm9keS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-4aomsmoazl
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Components/ImageSlider.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xJbWFnZVNsaWRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-aqwum2ec37
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Components/LoadingScreen.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMb2FkaW5nU2NyZWVuLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-tm7bgwdhrm
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-h7ac7n3ttr
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-qr60173z6r
+
+[c:/Users/YAU/Desktop/Asfalis Project/asfalis/Client/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-tn0mjccxz0

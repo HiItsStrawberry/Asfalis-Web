@@ -1,0 +1,68 @@
+﻿@page "/"
+@inject NavigationManager _navManager
+@inject ILocalStorageService _localStorage
+@inject CustomAuthStateProvider _authState
+
+<CardBody CardTitle="Welcome to Asfalis">
+    <AuthorizeView>
+        <Authorized>
+            <Results ShowButton="false" Title="User Login" Message="@MessageOption.LoginSuccess" Size="200">
+                <CustomButton Name="Sign Out" Type="button" CssClass="custom-btn-primary mt-2" OnClickFunc="Logout" />
+            </Results>
+        </Authorized>
+        <NotAuthorized>
+            <Results Link="login" LinkText="Sign In" Title="User Login" Message="@MessageOption.NotLogin" Size="200" />
+        </NotAuthorized>
+    </AuthorizeView>
+</CardBody>
+
+<div class="flex-container">
+    <CardBody CardTitle="Introduction to Asfalis">
+        <h6>Asfalis is a login authentication system that is secured by MFA</h6>
+        <p>
+            The name <b>Asfalis</b> came from a Greek word <b>ασφαλής.</b>
+            <br>
+            It has the meaning of security.
+        </p>
+        <ul>
+            <li>The users can register and login with their accounts.</li>
+            <li>The user's account will locked out after 3 login failure attempts.</li>
+            <li>The users can download the images registered from their email.</li>
+            <li>
+                The users are required to go through all 3 phases for a successful login.
+                <ol>
+                    <li>The first phase: Personal Information</li>
+                    <li>The second phase: QR Code authentication</li>
+                    <li>The third phase: Image-based authentication</li>
+                </ol>
+            </li>
+            <li>It uses Bcrypt and AES for data encryption.</li>
+            <li>It uses JWT token for authentication.</li>
+        </ul>
+    </CardBody>
+    <CardBody CardTitle="System Compatibility">
+        <h6>Best view at with 1280 x 768 resolution</h6>
+        <p>Compatible Browsers Support</p>
+        <ul>
+            <li>Google Chrome with version 53 or above</li>
+            <li>Mozilla Firefox with version 78 or above</li>
+            <li>Microsoft Edge with version 20 or above</li>
+            <li>Opera with version 15 or above</li>
+            <li>Apple Safari with version 6.2.6 or above</li>
+        </ul>
+    </CardBody>
+
+</div>
+
+
+
+
+
+@code {
+    private async Task Logout()
+    {
+        await _localStorage.RemoveItemAsync("auth_token");
+        await _authState.NotifyStateChanged();
+        _navManager.NavigateTo("login");
+    }
+}

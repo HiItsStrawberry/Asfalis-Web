@@ -1,0 +1,44 @@
+@inherits InputText
+@using System.Linq.Expressions
+
+<div class="form-floating mb-3">
+    <InputText 
+        type="@Type"
+        id="@InputId"
+        class="form-control"
+        placeholder="@DisplayText"
+        Value="@Value"
+        ValueExpression="ValueExpression"
+        ValueChanged="OnValueChanged">
+    </InputText>
+    <label for="@InputId">@DisplayText</label>
+    <ValidationMessage For="Validation" />
+</div>
+
+
+
+@code {
+
+    [Parameter]
+    public string? InputId { get; set; }
+
+    [Parameter]
+    public string? DisplayText { get; set; }
+
+    [Parameter]
+    public string Type { get; set; } = "text";
+
+    [Parameter, EditorRequiredAttribute]
+    public Expression<Func<string>>? Validation { get; set; }
+
+    private void OnValueChanged(string newValue)
+    {
+        this.CurrentValue = newValue;
+        this.EditContext.NotifyFieldChanged(FieldIdentifier);
+    }
+
+    protected override void OnInitialized()
+    {
+        this.InputId = $"floatingInput_{this.DisplayText?.Replace(" ", "")}";
+    }
+}

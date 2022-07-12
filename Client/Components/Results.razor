@@ -1,0 +1,52 @@
+﻿@inject NavigationManager _navManager
+
+<div class="d-flex py-4" style="@CardSize">
+    <div class="m-auto text-center px-2 lh-lg">
+        <h3>@Title</h3>
+        <p>@Message</p>
+        @if (ShowButton)
+        {
+            <CustomButton Name="@LinkText" Type="button" CssClass="custom-btn-primary mt-2" OnClickFunc="Redirect" />
+        }
+        @ChildContent
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public string? Size { get; set; }
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? Link { get; set; }
+
+    [Parameter]
+    public string? Message { get; set; }
+
+    [Parameter]
+    public string? LinkText { get; set; }
+
+    [Parameter]
+    public bool ShowButton { get; set; } = true;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private string CardSize = "width: 100%; min-height: 350px";
+
+    private void Redirect()
+    {
+        _navManager.NavigateTo(Link!);
+    }
+
+    protected override void OnInitialized()
+    {
+        if (!string.IsNullOrEmpty(Size))
+        {
+            CardSize = $"width: 100%; min-height: {Size}px";
+        }
+    }
+}

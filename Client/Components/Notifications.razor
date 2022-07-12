@@ -1,0 +1,41 @@
+﻿@inject IToastService _toast
+
+@if (string.IsNullOrEmpty(Message)) return;
+
+<div style="z-index: 100">
+    @switch (Status)
+    {
+        case StatusOption.Info:
+            _toast.ShowInfo(Message, Title);
+            break;
+        case StatusOption.Error:
+            _toast.ShowError(Message, Title);
+            break;
+        case StatusOption.Success:
+            _toast.ShowSuccess(Message, Title);
+            break;
+        case StatusOption.Warning:
+            _toast.ShowWarning(Message, Title);
+            break;
+
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? Message { get; set; }
+
+    [Parameter]
+    public StatusOption Status { get; set; }
+
+    public enum StatusOption
+    {
+        Info,
+        Error,
+        Success,
+        Warning
+    }
+}

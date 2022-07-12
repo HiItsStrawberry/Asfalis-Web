@@ -1,0 +1,12 @@
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\bin\Debug\net6.0\asfalis.Shared.deps.json
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\bin\Debug\net6.0\asfalis.Shared.dll
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\bin\Debug\net6.0\asfalis.Shared.pdb
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\obj\Debug\net6.0\asfalis.Shared.csproj.AssemblyReference.cache
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\obj\Debug\net6.0\asfalis.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\obj\Debug\net6.0\asfalis.Shared.AssemblyInfoInputs.cache
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\obj\Debug\net6.0\asfalis.Shared.AssemblyInfo.cs
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\obj\Debug\net6.0\asfalis.Shared.csproj.CoreCompileInputs.cache
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\obj\Debug\net6.0\asfalis.Shared.dll
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\obj\Debug\net6.0\refint\asfalis.Shared.dll
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\obj\Debug\net6.0\asfalis.Shared.pdb
+C:\Users\YAU\Desktop\Asfalis Project\asfalis\Shared\obj\Debug\net6.0\ref\asfalis.Shared.dll
